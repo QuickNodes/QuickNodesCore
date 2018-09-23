@@ -1,0 +1,12 @@
+[Desktop Entry]
+Encoding=UTF-8
+Name=quicknodes
+Comment=quicknodes P2P Cryptocurrency
+Comment[fr]=quicknodes, monnaie virtuelle cryptographique pair à pair
+Comment[tr]=quicknodes, eşten eşe kriptografik sanal para birimi
+Exec=quicknodes-qt %u
+Terminal=false
+Type=Application
+Icon=quicknodes128
+MimeType=x-scheme-handler/quicknodes;
+Categories=Office;Finance;

@@ -1,0 +1,26 @@
+[Unit]
+Description=quicknodes's distributed currency daemon
+After=network.target
+
+[Service]
+User=quicknodes
+Group=quicknodes
+
+Type=forking
+PIDFile=/var/lib/quicknodesd/quicknodesd.pid
+
+ExecStart=/usr/bin/quicknodesd -daemon -pid=/var/lib/quicknodesd/quicknodesd.pid \
+          -conf=/etc/quicknodes/quicknodes.conf -datadir=/var/lib/quicknodesd
+
+ExecStop=-/usr/bin/quicknodes-cli -conf=/etc/quicknodes/quicknodes.conf \
+         -datadir=/var/lib/quicknodesd stop
+
+Restart=always
+PrivateTmp=true
+TimeoutStopSec=60s
+TimeoutStartSec=2s
+StartLimitInterval=120s
+StartLimitBurst=5
+
+[Install]
+WantedBy=multi-user.target
