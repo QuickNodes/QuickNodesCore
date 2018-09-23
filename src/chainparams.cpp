@@ -74,11 +74,11 @@ bool CheckProof(uint256 hash, unsigned int nBits)
 // + Contains no strange transactions
 static Checkpoints::MapCheckpoints mapCheckpoints =
     boost::assign::map_list_of
-    ( 0, uint256("0x00000cb109f6c53246ae10d676f32e6d68bce525c6cbd1c2403b40ab64271cc2"))
-    ( 5, uint256("0x00000e033f2dff3ddbe256aaf69f4dd9be4a403068fc2db5fe247beab2d5bd59"));
+    ( 0, uint256("0x000009244ea51d920406c32590bc1d331da2aba7160f3a14f06ffea94b95079a"))
+    (80, uint256("0x000003055208cb6083a153c12c2cc0c969ebe9cf010f1831c6b9d66cb3104f3e"));
 static const Checkpoints::CCheckpointData data = {
     &mapCheckpoints,
-    1537631191, // * UNIX timestamp of last checkpoint block
+    1537739379, // * UNIX timestamp of last checkpoint block
     0,    // * total number of transactions between genesis and last checkpoint
                 //   (the tx=... number in the SetBestChain debug.log lines)
     0        // * estimated number of transactions per day after checkpoint
@@ -88,7 +88,7 @@ static Checkpoints::MapCheckpoints mapCheckpointsTestnet =
     boost::assign::map_list_of(0, uint256("0x001"));
 static const Checkpoints::CCheckpointData dataTestnet = {
     &mapCheckpointsTestnet,
-    1537545572,
+    1537692170,
     0,
     250};
 
@@ -96,7 +96,7 @@ static Checkpoints::MapCheckpoints mapCheckpointsRegtest =
     boost::assign::map_list_of(0, uint256("0x001"));
 static const Checkpoints::CCheckpointData dataRegtest = {
     &mapCheckpointsRegtest,
-    1537545572,
+    1537692170,
     0,
     100};
 
@@ -142,17 +142,17 @@ public:
         nMaxMoneyOut = 90000000000 * COIN;
 
         /** Height or Time Based Activations **/
-        nLastPOWBlock = 50;
+        nLastPOWBlock = 100;
         nModifierUpdateBlock = 999999999;
         nZerocoinStartHeight = 601;
         nAccumulatorStartHeight = 1;
-        nZerocoinStartTime = 1537545572+10000; // 14 - apr - 2018
+        nZerocoinStartTime = 1537702170; // 14 - apr - 2018
         nBlockEnforceSerialRange = 1; //Enforce serial range starting this block
         nBlockRecalculateAccumulators = ~1; //Trigger a recalculation of accumulators
         nBlockFirstFraudulent = ~1; //First block that bad serials emerged
         nBlockLastGoodCheckpoint = ~1; //Last valid accumulator checkpoint
 
-        const char* pszTimestamp = "QuickNodes - Doing Restaurant Business Better 21.09.2018 7:00 am (v1.0.0)";
+        const char* pszTimestamp = "QuickNodes - Doing Restaurant Business Better 21.09.2018 7:00 am (v1.0.2) restart";
         CMutableTransaction txNew;
         txNew.vin.resize(1);
         txNew.vout.resize(1);
@@ -163,30 +163,14 @@ public:
         genesis.hashPrevBlock = 0;
         genesis.hashMerkleRoot = genesis.BuildMerkleTree();
         genesis.nVersion = 1;
-        genesis.nTime = 1537545570;
+        genesis.nTime = 1537692170;
         genesis.nBits = 0x1e0ffff0;
-        genesis.nNonce = 9775712;
+        genesis.nNonce = 10940857;
 
-        /*
-        std::cout << "===== New genesis" << std::endl;
-        while (!CheckProof(genesis.GetHash(), genesis.nBits)) {
-            genesis.nNonce ++;
-        }
-
-        std::cout << "===== time" << std::endl;
-        std::cout << genesis.nTime << std::endl;
-        std::cout << "===== Nonce" << std::endl;
-        std::cout << genesis.nNonce << std::endl;
-        std::cout << "===== Genesis" << std::endl;
-        std::cout << genesis.GetHash().GetHex() << std::endl;
-        std::cout << "===== Merkle" << std::endl;
-        std::cout << genesis.hashMerkleRoot.GetHex() << std::endl;
-        */
-
-        hashGenesisBlock = uint256("0x00000cb109f6c53246ae10d676f32e6d68bce525c6cbd1c2403b40ab64271cc2");
+        hashGenesisBlock = uint256("0x000009244ea51d920406c32590bc1d331da2aba7160f3a14f06ffea94b95079a");
         hashGenesisBlock = genesis.GetHash();
-        assert(hashGenesisBlock == uint256("0x00000cb109f6c53246ae10d676f32e6d68bce525c6cbd1c2403b40ab64271cc2"));
-        assert(genesis.hashMerkleRoot == uint256("0x645e2fec500d0398234664e98647a7bf9c5ea863817e55642cff613ec625b0fb"));
+        assert(hashGenesisBlock == uint256("0x000009244ea51d920406c32590bc1d331da2aba7160f3a14f06ffea94b95079a"));
+        assert(genesis.hashMerkleRoot == uint256("0x75b4ef7041efeb5b127e27bef3d32db77c2acbb5a31179481601ab51ee56a8b7"));
 
 
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 58); // W
@@ -211,7 +195,7 @@ public:
         nPoolMaxTransactions = 3;
         strSporkKey = "04e387d63425004c8b3a2a9e4df21cc1edb5cc0ffd73507dad6517bb2736fd35498b92a69fc454c73853446961fdc8c4513289c4e1c02f5c7f20070e3450508fc3";
         strObfuscationPoolDummyAddress = "CaJAo1A7gPBftYSHywtBN7XRfHTWWQeJm4";
-        nStartMasternodePayments = 1537545570; //Wed, 25 Jun 2014 20:36:16 GMT
+        nStartMasternodePayments = 1537702170; //Wed, 25 Jun 2014 20:36:16 GMT
 
         /** Zerocoin */
         zerocoinModulus = "0xc95577b6dce0049b0a20c779af38079355abadde1a1d80c353f6cb697a7ae5a087bad39caa5798478551d0f9d91e6267716506f32412de1d19d17588765eb9502b85c6a18abdb05791cfd8b734e960281193705eeece210920cc922b3af3ceb178bf12c22eb565d5767fbf19545639be8953c2c38ffad41f3371e4aac750ac2d7bd614b3faabb453081d5d88fdbb803657a980bc93707e4b14233a2358c97763bf28f7c933206071477e8b371f229bc9ce7d6ef0ed7163aa5dfe13bc15f7816348b328fa2c1e69d5c88f7b94cee7829d56d1842d77d7bb8692e9fc7b7db059836500de8d57eb43c345feb58671503b932829112941367996b03871300f25efb5";
